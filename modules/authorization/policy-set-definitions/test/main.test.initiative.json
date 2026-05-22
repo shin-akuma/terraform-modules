@@ -1,0 +1,40 @@
+{
+  "name": "terraform-test",
+  "displayName": "Test policy for terraform module.",
+  "description": "Set of policies for testing purpooses.",
+  "metadata": {
+    "category": "Terraform Testing",
+    "version": "1.0.0"
+  },
+  "parameters": {
+    "listOfAllowedLocations": {
+      "type": "Array",
+      "metadata": {
+        "description": "The list of locations that can be specified when deploying resources.",
+        "strongType": "location",
+        "displayName": "Allowed locations"
+      },
+      "defaultValue": ["australiaeast", "australiasoutheast"]
+    }
+  },
+  "policyDefinitions": [
+    {
+      "policyDefinitionReferenceId": "Allowed locations",
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e56962a6-4747-49cd-b67b-bf8b01975c4c",
+      "parameters": {
+        "listOfAllowedLocations": {
+          "value": "[parameters('listOfAllowedLocations')]"
+        }
+      }
+    },
+    {
+      "policyDefinitionReferenceId": "Allowed locations for RGs",
+      "policyDefinitionId": "/providers/Microsoft.Authorization/policyDefinitions/e765b5de-1225-4ba3-bd56-1ac6695af988",
+      "parameters": {
+        "listOfAllowedLocations": {
+          "value": "[parameters('listOfAllowedLocations')]"
+        }
+      }
+    }
+  ]
+}
