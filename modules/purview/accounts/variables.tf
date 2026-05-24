@@ -28,4 +28,9 @@ variable "resource_lock_level" {
   type        = string
   description = "Optional. Specify the type of resource lock. Allowed values: 'CanNotDelete', 'ReadOnly' or 'None'."
   default     = "None"
+
+  validation {
+    condition     = contains(["CanNotDelete", "ReadOnly", "None"], var.resource_lock_level)
+    error_message = "resource_lock_level must be one of: CanNotDelete, ReadOnly, or None."
+  }
 }

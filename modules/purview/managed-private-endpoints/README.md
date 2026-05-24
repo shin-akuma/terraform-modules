@@ -29,10 +29,10 @@ No modules.
 | <a name="input_create_managed_private_endpoints"></a> [create_managed_private_endpoints](#input_create_managed_private_endpoints) | Whether to create managed private endpoints from Purview to data sources. | `bool` | `false` | no |
 | <a name="input_enable_adls_managed_endpoint"></a> [enable_adls_managed_endpoint](#input_enable_adls_managed_endpoint) | Create a managed private endpoint from Purview to ADLS Gen2 storage. | `bool` | `false` | no |
 | <a name="input_enable_databricks_managed_endpoint"></a> [enable_databricks_managed_endpoint](#input_enable_databricks_managed_endpoint) | Create a managed private endpoint from Purview to Databricks workspace. | `bool` | `false` | no |
-| <a name="input_resource_group_name"></a> [resource_group_name](#input_resource_group_name) | Resource group name of the Purview account. | `string` | n/a | yes |
-| <a name="input_purview_account_name"></a> [purview_account_name](#input_purview_account_name) | Purview account name. | `string` | n/a | yes |
-| <a name="input_adls_storage_account_resource_id"></a> [adls_storage_account_resource_id](#input_adls_storage_account_resource_id) | Resource ID of the ADLS Gen2 storage account. | `string` | n/a | yes |
-| <a name="input_databricks_workspace_resource_id"></a> [databricks_workspace_resource_id](#input_databricks_workspace_resource_id) | Resource ID of the Databricks workspace. | `string` | n/a | yes |
+| <a name="input_resource_group_name"></a> [resource_group_name](#input_resource_group_name) | Resource group name of the Purview account. Required when `create_managed_private_endpoints` is `true`. | `string` | `null` | no |
+| <a name="input_purview_account_name"></a> [purview_account_name](#input_purview_account_name) | Purview account name. Required when `create_managed_private_endpoints` is `true`. | `string` | `null` | no |
+| <a name="input_adls_storage_account_resource_id"></a> [adls_storage_account_resource_id](#input_adls_storage_account_resource_id) | Resource ID of the ADLS Gen2 storage account. Required when both create and ADLS endpoint flags are enabled. | `string` | `null` | no |
+| <a name="input_databricks_workspace_resource_id"></a> [databricks_workspace_resource_id](#input_databricks_workspace_resource_id) | Resource ID of the Databricks workspace. Required when both create and Databricks endpoint flags are enabled. | `string` | `null` | no |
 
 ## Outputs
 

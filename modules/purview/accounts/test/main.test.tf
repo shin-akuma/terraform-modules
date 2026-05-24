@@ -17,6 +17,13 @@ provider "azurerm" {
   features {}
 
   resource_provider_registrations = "none"
+  subscription_id                 = var.subscription_id
+}
+
+variable "subscription_id" {
+  type        = string
+  description = "Subscription ID used by the Azurerm provider for plan/apply operations."
+  default     = "00000000-0000-0000-0000-000000000000"
 }
 
 variable "location" {
@@ -29,6 +36,21 @@ variable "short_identifier" {
   type        = string
   description = "Optional. A short identifier for the kind of deployment."
   default     = "arn"
+}
+
+variable "resource_lock_level" {
+  type        = string
+  description = "Optional. Lock level to test for the Purview account module."
+  default     = "None"
+}
+
+variable "tags" {
+  type        = map(string)
+  description = "Optional. Tags used for the Purview account module test."
+  default = {
+    environment = "test"
+    module      = "purview-accounts"
+  }
 }
 
 resource "random_string" "random" {
@@ -52,8 +74,6 @@ module "purview_account" {
   resource_group_name         = azurerm_resource_group.test.name
   location                    = var.location
   managed_resource_group_name = "${var.short_identifier}-pvw-managed-${random_string.random.result}"
-  tags = {
-    environment = "test"
-    module      = "purview-accounts"
-  }
+  resource_lock_level         = var.resource_lock_level
+  tags                        = var.tags
 }
